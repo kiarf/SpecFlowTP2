@@ -5,7 +5,7 @@ namespace SpecFlowTP2
 {
     public class Scrutin
     {
-        public Scrutin(List<Vote> votes)
+        public Scrutin()
         {
             Votes = new List<Vote>();
         }

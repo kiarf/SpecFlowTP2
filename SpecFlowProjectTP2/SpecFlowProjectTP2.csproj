@@ -17,4 +17,8 @@
     <Folder Include="Hooks\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SpecFlowTP2\SpecFlowBallot.csproj" />
+  </ItemGroup>
+
 </Project>
