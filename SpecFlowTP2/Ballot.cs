@@ -12,16 +12,28 @@ namespace SpecFlowBallot
 
         public List<Vote> Votes { get; set; }
 
-        public Dictionary<Choice, int> GetResultat()
+        private Dictionary<Choice, int> GetResults()
         {
-            // Retourne le Choice pour lequel il y a le plus de candidats
-            var resultats = Votes.GroupBy(t => t.Choice).ToDictionary(t => t.Key, x => x.Count());
-            return resultats;
+            var results = new Dictionary<Choice, int>();
+            foreach (var vote in Votes)
+            {
+                if (results.ContainsKey(vote.Choice))
+                {
+                    results[vote.Choice] += 1;
+                }
+                else
+                {
+                    results.Add(vote.Choice, 1);
+                }
+            }
+
+            return results;
         }
 
-        public Choice GetVainqueur()
+        public Choice GetWinner()
         {
-            return Votes.GroupBy(t => t.Choice).OrderBy(t => t.Count()).First().Key;
+            var results = GetResults();
+            return results.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
         }
     }
 }
