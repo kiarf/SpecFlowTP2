@@ -1,6 +1,6 @@
-﻿namespace SpecFlowTP2
+﻿namespace SpecFlowBallot
 {
-    public enum Choix
+    public enum Choice
     {
         VoteBlanc = 1,
         JohanCampion = 2,

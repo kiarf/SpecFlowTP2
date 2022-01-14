@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace SpecFlowTP2
+﻿namespace SpecFlowBallot
 {
     public class Vote
     {
-        public Choix choix { get; set; }
+        public Choice Choice { get; set; }
     }
 }

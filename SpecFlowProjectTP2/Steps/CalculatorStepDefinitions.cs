@@ -1,4 +1,4 @@
-﻿using SpecFlowTP2;
+﻿using SpecFlowBallot;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowProjectTP2.Steps
@@ -7,7 +7,7 @@ namespace SpecFlowProjectTP2.Steps
     public sealed class ScrutinStepDefinitions
     {
         private readonly ScenarioContext _scenarioContext;
-        private Scrutin _scrutin = new Scrutin();
+        private Ballot _ballot = new Ballot();
 
         public ScrutinStepDefinitions(ScenarioContext scenarioContext)
         {
