@@ -22,14 +22,14 @@ namespace SpecFlowProjectTP2.Steps
         {
             foreach (var row in dataTable.Rows)
             {
-                _ballot.Votes.Add(new Vote((Choice) Enum.Parse(typeof(Choice), row[0])));
+                _ballot.VotesFirstTurn.Add(new Vote((Choice) Enum.Parse(typeof(Choice), row[0])));
             }
         }
 
         [When(@"winner")]
         public void WhenWinner()
         {
-            _choice = _ballot.GetWinner().ToString();
+            //_choice = _ballot.GetWinner(_ballot.VotesFirstTurn).ToString();
         }
 
         [Then(@"the result should be (.*)")]

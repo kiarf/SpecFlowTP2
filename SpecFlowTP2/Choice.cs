@@ -2,9 +2,12 @@
 {
     public enum Choice
     {
-        VoteBlanc = 1,
-        JohanCampion = 2,
-        FrancoisRoullaud = 3,
-        JcDurand = 4
+        JohanCampion = 1,
+        FrancoisRoullaud = 2,
+        JcDurand = 3,
+
+        VoteBlanc = 4,
+        NoMajority = 5,
+        Tie = 6
     }
 }
