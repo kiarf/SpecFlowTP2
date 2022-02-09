@@ -271,15 +271,17 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("A candidate wins the second turn (more votes)")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("No Majority in the first turn & tie for the second candidate : the oldest candida" +
+            "te wins")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Scrutin")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("MajoritySecondTurn")]
-        public virtual void ACandidateWinsTheSecondTurnMoreVotes()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("TieForSecond")]
+        public virtual void NoMajorityInTheFirstTurnTieForTheSecondCandidateTheOldestCandidateWins()
         {
             string[] tagsOfScenario = new string[] {
-                    "MajoritySecondTurn"};
+                    "TieForSecond"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A candidate wins the second turn (more votes)", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("No Majority in the first turn & tie for the second candidate : the oldest candida" +
+                    "te wins", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 42
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -306,11 +308,6 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "CandidateCode"});
                 table7.AddRow(new string[] {
-                            "Johan",
-                            "Campion",
-                            "13/07/1997",
-                            "1"});
-                table7.AddRow(new string[] {
                             "Francois",
                             "Roullaud",
                             "16/10/1999",
@@ -320,6 +317,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "Durand",
                             "05/05/1989",
                             "3"});
+                table7.AddRow(new string[] {
+                            "Johan",
+                            "Campion",
+                            "13/07/1997",
+                            "1"});
 #line 43
  testRunner.Given("the candidates are", ((string)(null)), table7, "Given ");
 #line hidden
@@ -328,17 +330,19 @@ this.ScenarioInitialize(scenarioInfo);
                 table8.AddRow(new string[] {
                             "1"});
                 table8.AddRow(new string[] {
-                            "3"});
+                            "2"});
+                table8.AddRow(new string[] {
+                            "2"});
                 table8.AddRow(new string[] {
                             "3"});
 #line 48
  testRunner.And("the votes are", ((string)(null)), table8, "And ");
 #line hidden
-#line 53
+#line 54
  testRunner.And("the ballot is closed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 54
- testRunner.When("second turn", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 55
+ testRunner.When("first turn", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
@@ -346,11 +350,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "CandidateCode"});
                 table9.AddRow(new string[] {
+                            "Francois",
+                            "Roullaud",
+                            "16/10/1999",
+                            "2"});
+                table9.AddRow(new string[] {
                             "Jean-Charles",
                             "Durand",
                             "05/05/1989",
                             "3"});
-#line 55
+#line 56
  testRunner.Then("the winner of the ballot should be", ((string)(null)), table9, "Then ");
 #line hidden
             }
@@ -358,16 +367,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("No candidate win the second turn (tie)")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("A candidate wins the second turn (more votes)")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Scrutin")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("TieSecondTurn")]
-        public virtual void NoCandidateWinTheSecondTurnTie()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("MajoritySecondTurn")]
+        public virtual void ACandidateWinsTheSecondTurnMoreVotes()
         {
             string[] tagsOfScenario = new string[] {
-                    "TieSecondTurn"};
+                    "MajoritySecondTurn"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("No candidate win the second turn (tie)", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 60
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A candidate wins the second turn (more votes)", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 63
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -407,7 +416,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Durand",
                             "05/05/1989",
                             "3"});
-#line 61
+#line 64
  testRunner.Given("the candidates are", ((string)(null)), table10, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
@@ -416,13 +425,15 @@ this.ScenarioInitialize(scenarioInfo);
                             "1"});
                 table11.AddRow(new string[] {
                             "3"});
-#line 66
+                table11.AddRow(new string[] {
+                            "3"});
+#line 69
  testRunner.And("the votes are", ((string)(null)), table11, "And ");
 #line hidden
-#line 70
+#line 74
  testRunner.And("the ballot is closed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 71
+#line 75
  testRunner.When("second turn", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
@@ -430,8 +441,98 @@ this.ScenarioInitialize(scenarioInfo);
                             "LastName",
                             "BirthDate",
                             "CandidateCode"});
-#line 72
+                table12.AddRow(new string[] {
+                            "Jean-Charles",
+                            "Durand",
+                            "05/05/1989",
+                            "3"});
+#line 76
  testRunner.Then("the winner of the ballot should be", ((string)(null)), table12, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("The oldest candidate wins the second turn (tie)")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Scrutin")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("TieSecondTurn")]
+        public virtual void TheOldestCandidateWinsTheSecondTurnTie()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "TieSecondTurn"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The oldest candidate wins the second turn (tie)", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 81
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "BirthDate",
+                            "CandidateCode"});
+                table13.AddRow(new string[] {
+                            "Johan",
+                            "Campion",
+                            "13/07/1997",
+                            "1"});
+                table13.AddRow(new string[] {
+                            "Francois",
+                            "Roullaud",
+                            "16/10/1999",
+                            "2"});
+                table13.AddRow(new string[] {
+                            "Jean-Charles",
+                            "Durand",
+                            "05/05/1989",
+                            "3"});
+#line 82
+ testRunner.Given("the candidates are", ((string)(null)), table13, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                            "CandidateCode"});
+                table14.AddRow(new string[] {
+                            "1"});
+                table14.AddRow(new string[] {
+                            "3"});
+#line 87
+ testRunner.And("the votes are", ((string)(null)), table14, "And ");
+#line hidden
+#line 91
+ testRunner.And("the ballot is closed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 92
+ testRunner.When("second turn", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "BirthDate",
+                            "CandidateCode"});
+                table15.AddRow(new string[] {
+                            "Jean-Charles",
+                            "Durand",
+                            "05/05/1989",
+                            "3"});
+#line 93
+ testRunner.Then("the winner of the ballot should be", ((string)(null)), table15, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

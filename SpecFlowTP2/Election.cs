@@ -26,6 +26,28 @@ namespace SpecFlowBallot
 
         public void ProcessTurn(bool secondTurn = false)
         {
+            var results = Ballot.ProcessTurn(secondTurn).ToList();
+
+            switch (secondTurn)
+            {
+                case true when results.Count() == 2:
+                {
+                    var candidat1 = Candidates.Find(c => c.CandidateCode == results.First());
+                    var candidat2 = Candidates.Find(c => c.CandidateCode == results.Last());
+
+                    Candidates.Remove(candidat1.BirthDate < candidat2.BirthDate ? candidat2 : candidat1);
+                    return;
+                }
+                case false when results.Count() == 3:
+                {
+                    var candidat1 = Candidates.Find(c => c.CandidateCode == results.ElementAtOrDefault(1));
+                    var candidat2 = Candidates.Find(c => c.CandidateCode == results.ElementAtOrDefault(2));
+
+                    Candidates.Remove(candidat1.BirthDate < candidat2.BirthDate ? candidat2 : candidat1);
+                    return;
+                }
+            }
+
             Candidates.RemoveAll(c => !Ballot.ProcessTurn(secondTurn).Contains(c.CandidateCode));
         }
     }

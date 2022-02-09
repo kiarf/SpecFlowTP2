@@ -51,9 +51,13 @@ namespace SpecFlowBallot
                 return new List<int>();
             }
 
-            if (SortedResults.First().Value == SortedResults.ElementAt(1).Value && secondTurn)
+            if (SortedResults.First().Value == SortedResults.ElementAtOrDefault(1).Value && secondTurn)
             {
-                return new List<int>();
+                return new List<int>
+                {
+                    SortedResults.First().Key,
+                    SortedResults.ElementAtOrDefault(1).Key
+                };
             }
 
             if (SortedResults.First().Value > VoteCount() / 2 || secondTurn)
@@ -63,11 +67,21 @@ namespace SpecFlowBallot
                     SortedResults.First().Key
                 };
             }
+            
+            if (SortedResults.ElementAtOrDefault(1).Value == SortedResults.ElementAtOrDefault(2).Value && !secondTurn)
+            {
+                return new List<int>
+                {
+                    SortedResults.First().Key,
+                    SortedResults.ElementAtOrDefault(1).Key,
+                    SortedResults.ElementAtOrDefault(2).Key
+                };
+            }
 
             return new List<int>
             {
                 SortedResults.First().Key,
-                SortedResults.ElementAt(1).Key
+                SortedResults.ElementAtOrDefault(1).Key
             };
         }
 
