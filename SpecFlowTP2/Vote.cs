@@ -1,12 +1,14 @@
-﻿namespace SpecFlowBallot
+﻿using System;
+
+namespace SpecFlowBallot
 {
     public class Vote
     {
-        public Vote(Choice choice)
+        public Vote(int candidateCode)
         {
-            Choice = choice;
+            CandidateCode = candidateCode;
         }
 
-        public Choice Choice { get; set; }
+        public int CandidateCode { get; set; }
     }
 }

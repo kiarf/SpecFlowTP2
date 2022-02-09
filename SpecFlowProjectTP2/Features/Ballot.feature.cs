@@ -19,37 +19,57 @@ namespace SpecFlowProjectTP2.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("Scrutin", SourceFile="Features\\Ballot.feature", SourceLine=0)]
+    [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
     public partial class ScrutinFeature
     {
         
-        private TechTalk.SpecFlow.ITestRunner testRunner;
+        private static TechTalk.SpecFlow.ITestRunner testRunner;
+        
+        private Microsoft.VisualStudio.TestTools.UnitTesting.TestContext _testContext;
         
         private string[] _featureTags = ((string[])(null));
         
 #line 1 "Ballot.feature"
 #line hidden
         
-        [TechTalk.SpecRun.FeatureInitialize()]
-        public virtual void FeatureSetup()
+        public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
+        {
+            get
+            {
+                return this._testContext;
+            }
+            set
+            {
+                this._testContext = value;
+            }
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute()]
+        public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Scrutin", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [TechTalk.SpecRun.FeatureCleanup()]
-        public virtual void FeatureTearDown()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.ClassCleanupAttribute()]
+        public static void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute()]
         public virtual void TestInitialize()
         {
+            if (((testRunner.FeatureContext != null) 
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "Scrutin")))
+            {
+                global::SpecFlowProjectTP2.Features.ScrutinFeature.FeatureSetup(null);
+            }
         }
         
-        [TechTalk.SpecRun.ScenarioCleanup()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute()]
         public virtual void TestTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -58,6 +78,7 @@ namespace SpecFlowProjectTP2.Features
         public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
+            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<Microsoft.VisualStudio.TestTools.UnitTesting.TestContext>(_testContext);
         }
         
         public virtual void ScenarioStart()
@@ -70,14 +91,16 @@ namespace SpecFlowProjectTP2.Features
             testRunner.CollectScenarioErrors();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("GetWinner", new string[] {
-                "Winner"}, SourceLine=3)]
-        public virtual void GetWinner()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Majority in the first turn")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Scrutin")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("MajorityFirstTurn")]
+        public virtual void MajorityInTheFirstTurn()
         {
             string[] tagsOfScenario = new string[] {
-                    "Winner"};
+                    "MajorityFirstTurn"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GetWinner", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Majority in the first turn", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 4
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -99,27 +122,316 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                            "choice"});
+                            "FirstName",
+                            "LastName",
+                            "BirthDate",
+                            "CandidateCode"});
                 table1.AddRow(new string[] {
+                            "Johan",
+                            "Campion",
+                            "13/07/1997",
                             "1"});
                 table1.AddRow(new string[] {
+                            "Francois",
+                            "Roullaud",
+                            "16/10/1999",
                             "2"});
                 table1.AddRow(new string[] {
-                            "2"});
-                table1.AddRow(new string[] {
+                            "Jean-Charles",
+                            "Durand",
+                            "05/05/1989",
                             "3"});
-                table1.AddRow(new string[] {
-                            "1"});
-                table1.AddRow(new string[] {
-                            "2"});
 #line 5
- testRunner.Given("the votes are", ((string)(null)), table1, "Given ");
+ testRunner.Given("the candidates are", ((string)(null)), table1, "Given ");
 #line hidden
-#line 13
- testRunner.When("winner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "CandidateCode"});
+                table2.AddRow(new string[] {
+                            "2"});
+                table2.AddRow(new string[] {
+                            "1"});
+                table2.AddRow(new string[] {
+                            "1"});
+                table2.AddRow(new string[] {
+                            "1"});
+#line 10
+ testRunner.And("the votes are", ((string)(null)), table2, "And ");
 #line hidden
-#line 14
- testRunner.Then("the result should be JohanCampion", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 17
+ testRunner.And("the ballot is closed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 18
+ testRunner.When("first turn", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "BirthDate",
+                            "CandidateCode"});
+                table3.AddRow(new string[] {
+                            "Johan",
+                            "Campion",
+                            "13/07/1997",
+                            "1"});
+#line 19
+ testRunner.Then("the winner of the ballot should be", ((string)(null)), table3, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("No Majority in the first turn : two candidates selected for second turn")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Scrutin")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("NoMajorityFirstTurn")]
+        public virtual void NoMajorityInTheFirstTurnTwoCandidatesSelectedForSecondTurn()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "NoMajorityFirstTurn"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("No Majority in the first turn : two candidates selected for second turn", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 24
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "BirthDate",
+                            "CandidateCode"});
+                table4.AddRow(new string[] {
+                            "Francois",
+                            "Roullaud",
+                            "16/10/1999",
+                            "2"});
+                table4.AddRow(new string[] {
+                            "Jean-Charles",
+                            "Durand",
+                            "05/05/1989",
+                            "3"});
+                table4.AddRow(new string[] {
+                            "Johan",
+                            "Campion",
+                            "13/07/1997",
+                            "1"});
+#line 25
+ testRunner.Given("the candidates are", ((string)(null)), table4, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                            "CandidateCode"});
+                table5.AddRow(new string[] {
+                            "1"});
+                table5.AddRow(new string[] {
+                            "2"});
+#line 30
+ testRunner.And("the votes are", ((string)(null)), table5, "And ");
+#line hidden
+#line 34
+ testRunner.And("the ballot is closed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 35
+ testRunner.When("first turn", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "BirthDate",
+                            "CandidateCode"});
+                table6.AddRow(new string[] {
+                            "Johan",
+                            "Campion",
+                            "13/07/1997",
+                            "1"});
+                table6.AddRow(new string[] {
+                            "Francois",
+                            "Roullaud",
+                            "16/10/1999",
+                            "2"});
+#line 36
+ testRunner.Then("the winner of the ballot should be", ((string)(null)), table6, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("A candidate wins the second turn (more votes)")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Scrutin")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("MajoritySecondTurn")]
+        public virtual void ACandidateWinsTheSecondTurnMoreVotes()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "MajoritySecondTurn"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A candidate wins the second turn (more votes)", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 42
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "BirthDate",
+                            "CandidateCode"});
+                table7.AddRow(new string[] {
+                            "Johan",
+                            "Campion",
+                            "13/07/1997",
+                            "1"});
+                table7.AddRow(new string[] {
+                            "Francois",
+                            "Roullaud",
+                            "16/10/1999",
+                            "2"});
+                table7.AddRow(new string[] {
+                            "Jean-Charles",
+                            "Durand",
+                            "05/05/1989",
+                            "3"});
+#line 43
+ testRunner.Given("the candidates are", ((string)(null)), table7, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                            "CandidateCode"});
+                table8.AddRow(new string[] {
+                            "1"});
+                table8.AddRow(new string[] {
+                            "3"});
+                table8.AddRow(new string[] {
+                            "3"});
+#line 48
+ testRunner.And("the votes are", ((string)(null)), table8, "And ");
+#line hidden
+#line 53
+ testRunner.And("the ballot is closed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 54
+ testRunner.When("second turn", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "BirthDate",
+                            "CandidateCode"});
+                table9.AddRow(new string[] {
+                            "Jean-Charles",
+                            "Durand",
+                            "05/05/1989",
+                            "3"});
+#line 55
+ testRunner.Then("the winner of the ballot should be", ((string)(null)), table9, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("No candidate win the second turn (tie)")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Scrutin")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("TieSecondTurn")]
+        public virtual void NoCandidateWinTheSecondTurnTie()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "TieSecondTurn"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("No candidate win the second turn (tie)", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 60
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "BirthDate",
+                            "CandidateCode"});
+                table10.AddRow(new string[] {
+                            "Johan",
+                            "Campion",
+                            "13/07/1997",
+                            "1"});
+                table10.AddRow(new string[] {
+                            "Francois",
+                            "Roullaud",
+                            "16/10/1999",
+                            "2"});
+                table10.AddRow(new string[] {
+                            "Jean-Charles",
+                            "Durand",
+                            "05/05/1989",
+                            "3"});
+#line 61
+ testRunner.Given("the candidates are", ((string)(null)), table10, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                            "CandidateCode"});
+                table11.AddRow(new string[] {
+                            "1"});
+                table11.AddRow(new string[] {
+                            "3"});
+#line 66
+ testRunner.And("the votes are", ((string)(null)), table11, "And ");
+#line hidden
+#line 70
+ testRunner.And("the ballot is closed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 71
+ testRunner.When("second turn", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "BirthDate",
+                            "CandidateCode"});
+#line 72
+ testRunner.Then("the winner of the ballot should be", ((string)(null)), table12, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

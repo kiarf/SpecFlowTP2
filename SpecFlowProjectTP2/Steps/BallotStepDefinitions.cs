@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
 using SpecFlowBallot;
 using TechTalk.SpecFlow;
@@ -8,9 +10,11 @@ namespace SpecFlowProjectTP2.Steps
     [Binding]
     public sealed class BallotStepDefinitions
     {
+        private readonly Election _election = new Election();
+
         private readonly ScenarioContext _scenarioContext;
-        private readonly Ballot _ballot = new Ballot();
-        private string? _choice;
+
+        private readonly List<Candidate> Candidates = new List<Candidate>();
 
         public BallotStepDefinitions(ScenarioContext scenarioContext)
         {
@@ -22,20 +26,47 @@ namespace SpecFlowProjectTP2.Steps
         {
             foreach (var row in dataTable.Rows)
             {
-                _ballot.VotesFirstTurn.Add(new Vote((Choice) Enum.Parse(typeof(Choice), row[0])));
+                _election.Ballot.AddVotes(new Vote(int.Parse(row[0])));
             }
         }
 
-        [When(@"winner")]
-        public void WhenWinner()
+        [Given("the candidates are")]
+        public void GivenTheCandidatesAre(Table dataTable)
         {
-            //_choice = _ballot.GetWinner(_ballot.VotesFirstTurn).ToString();
+            foreach (var row in dataTable.Rows)
+            {
+                _election.AddCandidate(new Candidate(
+                                                    row[0],
+                                                    row[1],
+                                                    DateTime.ParseExact(row[2], "dd/MM/yyyy", null),
+                                                    Convert.ToInt32(row[3]))
+                                     );
+            }
         }
 
-        [Then(@"the result should be (.*)")]
-        public void ThenTheResultShouldBeVoteBlanc(string result)
+        [Given(@"the ballot is closed")]
+        public void GivenTheBallotIsClosed()
         {
-            _choice.Should().Be(result);
+            _election.Ballot.CloseBallot();
+        }
+
+        [When(@"first turn")]
+        public void WhenFirstTurn()
+        {
+            _election.ProcessTurn(false);
+        }
+
+        [When(@"second turn")]
+        public void WhenSecondTurn()
+        {
+            _election.ProcessTurn(true);
+        }
+
+        [Then("the winner of the ballot should be")]
+        public void ThenTheResultShouldBe(Table dataTable)
+        {
+            var osef = dataTable.Rows.Select(row => new Candidate(row[0], row[1], DateTime.ParseExact(row[2], "dd/MM/yyyy", null), Convert.ToInt32(row[3]))).ToList();
+            _election.GetCandidates().Should().BeEquivalentTo(osef);
         }
     }
 }
