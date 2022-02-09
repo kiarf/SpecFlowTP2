@@ -36,11 +36,11 @@ namespace SpecFlowProjectTP2.Steps
             foreach (var row in dataTable.Rows)
             {
                 _election.AddCandidate(new Candidate(
-                                                    row[0],
-                                                    row[1],
-                                                    DateTime.ParseExact(row[2], "dd/MM/yyyy", null),
-                                                    Convert.ToInt32(row[3]))
-                                     );
+                                                     row[0],
+                                                     row[1],
+                                                     DateTime.ParseExact(row[2], "dd/MM/yyyy", null),
+                                                     Convert.ToInt32(row[3]))
+                                      );
             }
         }
 
@@ -53,7 +53,7 @@ namespace SpecFlowProjectTP2.Steps
         [When(@"first turn")]
         public void WhenFirstTurn()
         {
-            _election.ProcessTurn(false);
+            _election.ProcessTurn();
         }
 
         [When(@"second turn")]
@@ -62,11 +62,23 @@ namespace SpecFlowProjectTP2.Steps
             _election.ProcessTurn(true);
         }
 
+        [When(@"display")]
+        public void WhenDisplay()
+        {
+            _election.UpdateForDisplay();
+        }
+
         [Then("the winner of the ballot should be")]
         public void ThenTheResultShouldBe(Table dataTable)
         {
             var osef = dataTable.Rows.Select(row => new Candidate(row[0], row[1], DateTime.ParseExact(row[2], "dd/MM/yyyy", null), Convert.ToInt32(row[3]))).ToList();
             _election.GetCandidates().Should().BeEquivalentTo(osef);
+        }
+
+        [Then(@"the result of the ballot should be")]
+        public void ThenTheResultOfTheBallotShouldBe(Table dataTable)
+        {
+            var osef = dataTable.Rows.Select(row => new Candidate(row[0], row[1], Convert.ToInt32(row[2]), Convert.ToInt32(row[3]))).ToList();
         }
     }
 }

@@ -12,9 +12,19 @@ namespace SpecFlowBallot
             CandidateCode = candidateCode;
         }
 
+        public Candidate(string firstName, string lastName, int voteCount, int percentage)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            VoteCount = voteCount;
+            Percentage = percentage;
+        }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
         public int CandidateCode { get; set; }
+        public int VoteCount { get; set; }
+        public int Percentage { get; set; }
     }
 }

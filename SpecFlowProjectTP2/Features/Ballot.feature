@@ -94,4 +94,48 @@ Scenario: The oldest candidate wins the second turn (tie)
 	| FirstName    | LastName | BirthDate  | CandidateCode |
 	| Jean-Charles | Durand   | 05/05/1989 | 3             |
 
+@Display
+Scenario: Display the winners with vote count and percentage
+	Given the candidates are
+	| FirstName    | LastName | BirthDate  | CandidateCode |
+	| Johan        | Campion  | 13/07/1997 | 1             |
+	| Francois     | Roullaud | 16/10/1999 | 2             |
+	| Jean-Charles | Durand   | 05/05/1989 | 3             |
+	And the votes are
+	| CandidateCode |
+	| 2             |
+	| 2             |
+	| 1             |
+	| 2             |
+
+	And the ballot is closed
+	When first turn
+	And display
+	Then the result of the ballot should be 
+	| FirstName | LastName | VoteCount | Percentage |
+	| Francois  | Roullaud | 3         | 75         |
+	| Johan     | Campion  | 1         | 25         |
+
+@DisplayWithBlank
+Scenario: Display the winners and the blanks
+	Given the candidates are
+	| FirstName    | LastName | BirthDate  | CandidateCode |
+	| Johan        | Campion  | 13/07/1997 | 1             |
+	| Francois     | Roullaud | 16/10/1999 | 2             |
+	| Jean-Charles | Durand   | 05/05/1989 | 3             |
+	And the votes are
+	| CandidateCode |
+	| 2             |
+	| 2             |
+	| 2             |
+	| 1             |
+	| 0             |
+	And the ballot is closed
+	When first turn
+	And display
+	Then the result of the ballot should be 
+	| FirstName | LastName | VoteCount | Percentage |
+	| Francois  | Roullaud | 3         | 60         |
+	| Johan     | Campion  | 1         | 20         |
+	| Blank     | Vote     | 1         | 20         |
 
