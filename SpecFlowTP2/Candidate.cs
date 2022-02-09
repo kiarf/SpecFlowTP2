@@ -20,8 +20,8 @@ namespace SpecFlowBallot
             Percentage = percentage;
         }
 
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        private string FirstName { get; set; }
+        private string LastName { get; set; }
         public DateTime BirthDate { get; set; }
         public int CandidateCode { get; set; }
         public int VoteCount { get; set; }

@@ -11,9 +11,9 @@ namespace SpecFlowBallot
             Votes = new List<Vote>();
         }
 
-        public bool IsOpen { get; set; }
+        private bool IsOpen { get; set; }
 
-        public List<Vote> Votes { get; }
+        private List<Vote> Votes { get; }
 
         public IOrderedEnumerable<KeyValuePair<int, int>> SortedResults { get; set; }
 

@@ -60,10 +60,12 @@ namespace SpecFlowBallot
                 }
                 case false when results.Count() == 3:
                 {
+                    var candidat0 = Candidates.Find(c => c.CandidateCode == results.First());
                     var candidat1 = Candidates.Find(c => c.CandidateCode == results.ElementAtOrDefault(1));
                     var candidat2 = Candidates.Find(c => c.CandidateCode == results.ElementAtOrDefault(2));
                     Candidates.Clear();
-                    Candidates.Remove(candidat1.BirthDate < candidat2.BirthDate ? candidat2 : candidat1);
+                    Candidates.Add(candidat0);
+                    Candidates.Add(candidat1.BirthDate < candidat2.BirthDate ? candidat1 : candidat2);
                     return;
                 }
             }

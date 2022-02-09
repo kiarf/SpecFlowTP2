@@ -12,13 +12,8 @@ namespace SpecFlowProjectTP2.Steps
     {
         private readonly Election _election = new Election();
 
-        private readonly ScenarioContext _scenarioContext;
-
-        private readonly List<Candidate> Candidates = new List<Candidate>();
-
-        public BallotStepDefinitions(ScenarioContext scenarioContext)
+        public BallotStepDefinitions()
         {
-            _scenarioContext = scenarioContext;
         }
 
         [Given("the votes are")]
